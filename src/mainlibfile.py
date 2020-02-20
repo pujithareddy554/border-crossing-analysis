@@ -8,9 +8,6 @@ from datetime import datetime
 from itertools import chain
 import math
 from operator import itemgetter
-import pathlib
-import errno
-import os
 import csv
 import argparse
 
@@ -128,16 +125,8 @@ def write_to_csv(name_of_output_file, final_list):
         FileNotFoundError: If the file is not found
     """
 
-    try:
-        filepath = name_of_output_file
-    except OSError:
-        if pathlib.Path(name_of_output_file).resolve(strict=True):
-            pass
-        else:
-            raise FileNotFoundError(errno.ENOENT, os.strerror(errno.ENOENT),
-                                    name_of_output_file)
-
-    # Write out to the output csv file
+    filepath = name_of_output_file
+        # Write out to the output csv file
     with open(filepath, mode='w') as csv_outfile:
         outfile_writer = csv.writer(csv_outfile, delimiter=',', quotechar='"',
                                     quoting=csv.QUOTE_NONE)
