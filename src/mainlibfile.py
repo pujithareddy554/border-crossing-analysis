@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Feb 20 02:19:50 2020
+Created on Thu Feb 18 02:19:50 2020
 
 @author: pujit
 """
-
 from datetime import datetime
 from itertools import chain
 import math
@@ -13,7 +12,19 @@ import pathlib
 import errno
 import os
 import csv
+import argparse
 
+def parse_args():
+    """
+    Helper function that takes in the arguments passed in the shell to be used in the main script.
+    Returns:
+        args -- arguments
+    """
+    parser = argparse.ArgumentParser(description='Look for Border Crossing Statistics')
+    parser.add_argument('--input', help="enter the input filename", type=str)
+    parser.add_argument('--output', help="enter the output filename", type=str)
+    args = parser.parse_args()
+    return args
 def final_resultset(total_list, result_key, measure_key, measure_values):
 
     if not total_list:
